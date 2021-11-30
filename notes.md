@@ -10,6 +10,8 @@
 
 - took a screenshot of my previous error during deployment
 - FOR LATER: look into what collectstaticdoes in Django
+
+- for InconsistentMigrationHistory -- just run `heroku pg:reset DATABASE_URL` in the command line
 ## Product Requirements
 
 1. registration and login  
