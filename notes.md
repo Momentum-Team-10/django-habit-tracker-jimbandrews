@@ -9,6 +9,7 @@
     4. `heroku config:unset DISABLE_COLLECTSTATIC`
 
 - took a screenshot of my previous error during deployment
+- FOR LATER: look into what collectstaticdoes in Django
 ## Product Requirements
 
 1. registration and login  
