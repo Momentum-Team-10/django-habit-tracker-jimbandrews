@@ -14,3 +14,9 @@ class User(AbstractUser):
 class Habit(models.Model):
     name = models.CharField(max_length=75)
     target = models.IntegerField(validators=[MinValueValidator(0)])
+
+    def __repr__(self):
+        return f"<Habit name={self.name}>"
+
+    def __str__(self):
+        return self.name

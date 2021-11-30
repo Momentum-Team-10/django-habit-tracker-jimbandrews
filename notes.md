@@ -1,5 +1,14 @@
 # Project Notes
 
+## Heroku Setup
+
+- had to do a few extra steps to avoid an error with collectstatic  
+    1. `heroku config:set DISABLE_COLLECTSTATIC=1`
+    2. `git push heroku main`
+    3. `python manage.py collectstatic --noinput`
+    4. `heroku config:unset DISABLE_COLLECTSTATIC`
+
+- took a screenshot of my previous error during deployment
 ## Product Requirements
 
 1. registration and login  
