@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'tracker',
+    'registration',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,9 @@ django_on_heroku.settings(locals())
 del DATABASES['default']['OPTIONS']['sslmode']
 
 AUTH_USER_MODEL = "tracker.User"
+
+# django-registration-redux
+REGISTRATION_OPEN = True
+ACCOUNT_ACTIVATION_DAYS = 5
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = "home/"
