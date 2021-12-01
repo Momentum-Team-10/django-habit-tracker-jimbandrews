@@ -5,10 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     {% block title %}{% endblock title %}
     {% block javascript %}{% endblock javascript %}
 </head>
 <body>
+    <nav class="navbar" role="navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{% url 'guest_home' %}">
+                <i class="fas fa-chart-area"></i>
+            </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            {% block navbar %}{% endblock navbar %}
+        </div>
+    </nav>
     {% block content %}
     {% endblock content %}
 </body>
