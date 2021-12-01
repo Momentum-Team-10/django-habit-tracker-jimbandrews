@@ -27,8 +27,8 @@ class Habit(models.Model):
 
 class DailyRecord(models.Model):
     quantity = models.IntegerField()
-    date = models.DateTimeField(auto_now_add=True)
-    habit_id = models.ForeignKey('Habit', on_delete=models.CASCADE)
+    date = models.DateField()
+    habit_id = models.ForeignKey('Habit', on_delete=models.CASCADE, unique_for_date="date")
 
     def __repr__(self):
         return f"<DailyRecord habit={self.habit_id}"
