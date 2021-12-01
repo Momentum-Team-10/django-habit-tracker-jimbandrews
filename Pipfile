@@ -12,6 +12,7 @@ django-on-heroku = "*"
 gunicorn = "*"
 whitenoise = "*"
 django-registration-redux = "*"
+bpython = "*"
 
 [dev-packages]
 
