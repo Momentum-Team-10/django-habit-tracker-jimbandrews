@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from tracker import views
+import debug_toolbar
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.guest_home, name="guest_home"),
     path('accounts/', include('registration.backends.simple.urls')),
+    path('__debug__/', include(debug_toolbar.urls)),
+    path('', views.guest_home, name="guest_home"),
     path('user/', views.user_profile, name="user_profile"),
 ]

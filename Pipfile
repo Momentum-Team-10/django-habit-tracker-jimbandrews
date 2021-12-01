@@ -13,6 +13,7 @@ gunicorn = "*"
 whitenoise = "*"
 bpython = "*"
 django-registration-redux = "*"
+django-debug-toolbar = "*"
 
 [dev-packages]
 

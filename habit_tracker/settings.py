@@ -44,12 +44,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+
+    # My apps
     'tracker',
+
+    # Third-party apps
     'registration',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -142,3 +148,5 @@ REGISTRATION_OPEN = True
 ACCOUNT_ACTIVATION_DAYS = 5
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = "home/"
+
+INTERNAL_IPS = ["127.0.0.1",]
