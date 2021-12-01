@@ -11,8 +11,8 @@ psycopg2-binary = "*"
 django-on-heroku = "*"
 gunicorn = "*"
 whitenoise = "*"
-django-registration-redux = "*"
 bpython = "*"
+django-registration-redux = "*"
 
 [dev-packages]
 
