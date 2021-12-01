@@ -19,4 +19,6 @@
 
 2. what users should create
     - start with User and Habit models
-    - used django [validator](https://docs.djangoproject.com/en/3.2/ref/validators/#minvaluevalidator) to put lower bound on Habit target
+    - used django [validator](https://docs.djangoproject.com/en/3.2/ref/validators/#minvaluevalidator) to put lower bound on Habit target (but this might be incorrect)
+    - added DailyRecord model
+
