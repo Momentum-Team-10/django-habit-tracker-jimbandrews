@@ -22,3 +22,13 @@
     - used django [validator](https://docs.djangoproject.com/en/3.2/ref/validators/#minvaluevalidator) to put lower bound on Habit target (but this might be incorrect)
     - added DailyRecord model
 
+
+#### User Profile
+
+- display a table of habits
+- columns include the daily target, then an overview of the current week
+- need to edit view to grab a queryset of the days of the current week (Sunday - Saturday)
+- display data for each day, if exists
+- each table data entry should be a link to edit/add entry for that day
+- have progress bar for the week at the end?
+
