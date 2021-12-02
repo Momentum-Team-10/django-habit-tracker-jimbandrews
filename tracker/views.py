@@ -9,5 +9,7 @@ def guest_home(request):
 
 
 @login_required
-def user_profile(request, pk):
-    return render(request, 'tracker/profile.html')
+def user_profile(request):
+    user = request.user
+    habits = Habit.objects.filter(user_id=user.pk)
+    return render(request, 'tracker/profile.html', {"user": user, "habits": habits})

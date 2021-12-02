@@ -2,6 +2,24 @@
 
 {% block title %}{{ user.username }}'s Profile{% endblock title %}
 
-{% block navbar %}
-
-{% endblock navbar %}
+{% block content %}
+<div class="container">
+    <div class='content block'>
+        <h2>Hello, {{ user.username }}</h2>
+    </div>
+    <table class="table">
+        <thead>
+            <th>Habit</th>
+            <th>Daily Target</th>
+        </thead>
+        <tbody>
+            {% for habit in habits %}
+            <tr>
+                <th>{{ habit.name }}</th>
+                <td>{{ habit.target }} {{ habit.units }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
