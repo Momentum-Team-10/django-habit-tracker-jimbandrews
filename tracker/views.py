@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Habit, DailyRecord
 from .forms import HabitForm
@@ -6,7 +6,10 @@ from .forms import HabitForm
 # Create your views here.
 
 def guest_home(request):
-    return render(request, 'tracker/guest.html')
+    if request.user.is_authenticated:
+        return redirect("user_profile")
+    else:
+        return render(request, 'tracker/guest.html')
 
 
 @login_required
