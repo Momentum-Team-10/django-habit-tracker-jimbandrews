@@ -4,8 +4,17 @@
 Welcome
 {% endblock title %}
 
+{% block navbar %}
+<div class="navbar-end">
+    <div class="navbar-item">
+        <div class="buttons">
+            <a href="{% url 'auth_login' %}" class="button">Log in</a>
+            <a href="{% url 'registration_register' %}" class="button">Sign Up</a>
+        </div>
+    </div>
+</div>
+{% endblock navbar %}
+
 {% block content %}
 <h1>Welcome to the Habit Tracker!</h1>
-<a href="{% url 'auth_login' %}" class="button">Log in</a>
-<a href="{% url 'registration_register' %}" class="button">Sign Up</a>
 {% endblock content %}
