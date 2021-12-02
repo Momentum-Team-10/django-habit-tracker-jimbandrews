@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Habit{% endblock title %}
+
+{% block navbar %}
+<div class="navbar-start">
+    <a class="navbar-item">Add Habit</a>
+    <a class="navbar-item">Record Habit</a>
+</div>
+
+<div class="navbar-end">
+    <div class="navbar-item">
+        <div class="buttons">
+            <a href="{% url 'auth_logout' %}" class="button">Log out</a>
+        </div>
+    </div>
+</div>
+{% endblock navbar %}
+
+{% block content %}
+<form action="{% url 'add_habit' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="button" type="submit">Add Tag</button>
+</form>
+{% endblock content %}

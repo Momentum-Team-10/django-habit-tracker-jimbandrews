@@ -28,4 +28,5 @@ urlpatterns = [
     # my app pages
     path('', views.guest_home, name="guest_home"),
     path('user/', views.user_profile, name="user_profile"),
+    path('habit/add/', views.add_habit, name="add_habit"),
 ]
