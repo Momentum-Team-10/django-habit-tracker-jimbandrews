@@ -31,4 +31,4 @@
 - display data for each day, if exists
 - each table data entry should be a link to edit/add entry for that day
 - have progress bar for the week at the end?
-
+- use Modals in Bulma CSS library to display chart of specific habit over a given period of time?
