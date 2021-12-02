@@ -37,6 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,7 +50,6 @@ INSTALLED_APPS = [
     'tracker',
 
     # Third-party apps
-    'registration',
     'debug_toolbar',
 ]
 
@@ -144,9 +144,9 @@ del DATABASES['default']['OPTIONS']['sslmode']
 AUTH_USER_MODEL = "tracker.User"
 
 # django-registration-redux
+ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_OPEN = True
-ACCOUNT_ACTIVATION_DAYS = 5
 REGISTRATION_AUTO_LOGIN = True
-LOGIN_REDIRECT_URL = "home/"
+LOGIN_REDIRECT_URL = "/user/"
 
 INTERNAL_IPS = ["127.0.0.1",]

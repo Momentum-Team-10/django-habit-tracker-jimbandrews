@@ -5,7 +5,7 @@ Welcome
 {% endblock title %}
 
 {% block content %}
-Welcome to the Habit Tracker!
-Why won't this work
-Alright, let's see if this does it.
+<h1>Welcome to the Habit Tracker!</h1>
+<a href="{% url 'auth_login' %}" class="button">Log in</a>
+<a href="{% url 'registration_register' %}" class="button">Sign Up</a>
 {% endblock content %}

@@ -19,9 +19,13 @@ from tracker import views
 import debug_toolbar
 
 urlpatterns = [
+    # admin pages
     path('admin/', admin.site.urls),
+    # registration-redux pages
     path('accounts/', include('registration.backends.simple.urls')),
+    # debug-toolbar pages
     path('__debug__/', include(debug_toolbar.urls)),
+    # my app pages
     path('', views.guest_home, name="guest_home"),
     path('user/', views.user_profile, name="user_profile"),
 ]
