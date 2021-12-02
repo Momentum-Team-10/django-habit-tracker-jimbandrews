@@ -2,6 +2,21 @@
 
 {% block title %}{{ user.username }}'s Profile{% endblock title %}
 
+{% block navbar %}
+<div class="navbar-start">
+    <a class="navbar-item">Add Habit</a>
+    <a class="navbar-item">Record Habit</a>
+</div>
+
+<div class="navbar-end">
+    <div class="navbar-item">
+        <div class="buttons">
+            <a href="{% url 'auth_logout' %}" class="button">Log out</a>
+        </div>
+    </div>
+</div>
+{% endblock navbar %}
+
 {% block content %}
 <div class="container">
     <div class='content block'>
