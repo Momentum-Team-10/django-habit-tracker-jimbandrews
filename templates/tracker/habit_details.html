@@ -22,6 +22,9 @@
     <div class="content block">
         <h1>{{ habit.name }} Overview</h1>
     </div>
+    <div class="content block">
+        <a class="button" href="{% url 'edit_habit' pk=habit.pk %}">Edit</a>
+    </div>
     <table class="table">
         <tbody>
             {% for record in records %}

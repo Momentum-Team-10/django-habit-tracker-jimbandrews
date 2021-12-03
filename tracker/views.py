@@ -53,3 +53,16 @@ def add_record(request, pk):
             form.save()
             return redirect('user_profile')
     return render(request, 'tracker/add_record.html', {"form": form, "habit": habit})
+
+
+@login_required
+def edit_habit(request, pk):
+    habit = get_object_or_404(Habit, pk=pk)
+    if request.method == "GET":
+        form = HabitForm(instance=habit)
+    else:
+        form = HabitForm(data=request.POST, instance=habit)
+        if form.is_valid():
+            form.save()
+            return redirect('habit_details', pk=pk)
+    return render(request, 'tracker/edit_habit.html', {"form": form, "habit": habit})

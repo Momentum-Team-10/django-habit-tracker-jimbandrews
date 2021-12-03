@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Habit{% endblock title %}
+
+{% block navbar %}
+<div class="navbar-start">
+    <a class="navbar-item">Add Habit</a>
+    <a class="navbar-item">Record Habit</a>
+</div>
+
+<div class="navbar-end">
+    <div class="navbar-item">
+        <div class="buttons">
+            <a href="{% url 'auth_logout' %}" class="button">Log out</a>
+        </div>
+    </div>
+</div>
+{% endblock navbar %}
+
+{% block content %}
+<h1>Edit Habit</h1>
+<form action="{% url 'edit_habit' pk=habit.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="button" type="submit">Edit</button>
+</form>
+{% endblock content %}

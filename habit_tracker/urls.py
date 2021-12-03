@@ -31,4 +31,5 @@ urlpatterns = [
     path('habit/add/', views.add_habit, name="add_habit"),
     path('habit/<int:pk>/add_record', views.add_record, name="add_record"),
     path('habit/<int:pk>/', views.habit_details, name="habit_details"),
+    path('habit/<int:pk>/edit/', views.edit_habit, name="edit_habit"),
 ]
