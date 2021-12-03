@@ -30,7 +30,11 @@
         <tbody>
             {% for habit in habits %}
             <tr>
-                <th>{{ habit.name }}</th>
+                <th>
+                    <a>
+                        {{ habit.name }}
+                    </a>
+                </th>
                 <td>{{ habit.target }} {{ habit.units }}</td>
             </tr>
             {% endfor %}
