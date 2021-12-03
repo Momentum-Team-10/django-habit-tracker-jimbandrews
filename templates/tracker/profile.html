@@ -31,7 +31,7 @@
             {% for habit in habits %}
             <tr>
                 <th>
-                    <a>
+                    <a href="{% url 'habit_details' pk=habit.id %}">
                         {{ habit.name }}
                     </a>
                 </th>
