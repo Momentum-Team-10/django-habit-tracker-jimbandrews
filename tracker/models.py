@@ -13,6 +13,11 @@ class User(AbstractUser):
 
 
 class Habit(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['name', 'user_id'], name="unique_habit")
+        ]
+
     name = models.CharField(max_length=75)
     target = models.IntegerField(validators=[MinValueValidator(0)])
     units = models.CharField(max_length=75)
@@ -28,6 +33,11 @@ class Habit(models.Model):
 
 
 class DailyRecord(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['date', 'habit_id'], name="unique_daily_record")
+        ]
+
     quantity = models.IntegerField()
     date = models.DateField()
     habit_id = models.ForeignKey('Habit', on_delete=models.CASCADE, unique_for_date="date")
