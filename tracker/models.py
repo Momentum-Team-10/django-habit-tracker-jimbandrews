@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator
+from autoslug import AutoSlugField
 
 # Create your models here.
 class User(AbstractUser):
@@ -17,6 +18,7 @@ class Habit(models.Model):
     units = models.CharField(max_length=75)
     created_at = models.DateTimeField(auto_now_add=True)
     user_id = models.ForeignKey('User', on_delete=models.CASCADE)
+    slug = AutoSlugField(populate_from='name', null=True)
 
     def __repr__(self):
         return f"<Habit name={self.name}>"

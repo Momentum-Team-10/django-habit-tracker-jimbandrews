@@ -14,6 +14,7 @@ whitenoise = "*"
 bpython = "*"
 django-registration-redux = "*"
 django-debug-toolbar = "*"
+django-autoslug = "*"
 
 [dev-packages]
 
