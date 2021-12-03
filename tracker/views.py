@@ -20,6 +20,13 @@ def user_profile(request):
 
 
 @login_required
+def habit_details(request, pk):
+    habit = get_object_or_404(Habit, pk=pk)
+    records = DailyRecord.objects.filter(habit_id=habit)
+    return render(request, 'tracker/habit_details.html', {'habit': habit, 'records': records})
+
+
+@login_required
 def add_habit(request):
     if request.method == "GET":
         form = HabitForm()
@@ -29,7 +36,7 @@ def add_habit(request):
             form = form.save(commit=False)
             form.user_id = request.user
             form.save()
-            return redirect('user_profile')
+            return redirect('habit_details')
     return render(request, 'tracker/add_habit.html', {'form': form})
 
 

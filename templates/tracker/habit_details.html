@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ habit.name }}{% endblock title %}
+
+{% block navbar %}
+<div class="navbar-start">
+    <a href="{% url 'add_habit' %}" class="navbar-item">Add Habit</a>
+    <a class="navbar-item">Record Habit</a>
+</div>
+
+<div class="navbar-end">
+    <div class="navbar-item">
+        <div class="buttons">
+            <a href="{% url 'auth_logout' %}" class="button">Log out</a>
+        </div>
+    </div>
+</div>
+{% endblock navbar %}
+
+{% block content %}
+<div class="container">
+    <div class="content block">
+        <h1>{{ habit.name }} Overview</h1>
+    </div>
+    <table class="table">
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <th>
+                    {{ record.date}}
+                </th>
+                <td>{{ record.quantity }} {{ habit.units }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}
