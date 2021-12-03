@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<div class="navbar-start">
+    <a href="{% url 'add_habit' %}" class="navbar-item">Add Habit</a>
+    <a class="navbar-item">Record Habit</a>
+</div>
+
+<div class="navbar-end">
+    <div class="navbar-item">
+        <div class="buttons">
+            <a href="{% url 'auth_logout' %}" class="button">Log out</a>
+        </div>
+    </div>
+</div>
+{% endblock navbar %}
+
+{% block content %}
+<h1>{{ habit.name }}</h1>
+<h1>Create a Record</h1>
+<form action="{% url 'add_record' pk=habit.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="button" type="submit">Add</button>
+</form>
+{% endblock content %}

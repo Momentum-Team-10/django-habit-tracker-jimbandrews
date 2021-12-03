@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Habit, DailyRecord
-from .forms import HabitForm
+from .forms import DailyRecordForm, HabitForm
 
 # Create your views here.
 
@@ -31,3 +31,18 @@ def add_habit(request):
             form.save()
             return redirect('user_profile')
     return render(request, 'tracker/add_habit.html', {'form': form})
+
+
+@login_required
+def add_record(request, pk):
+    habit = get_object_or_404(Habit, pk=pk)
+    if request.method == "GET":
+        form = DailyRecordForm()
+    else:
+        form = DailyRecordForm(data=request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.habit_id = habit
+            form.save()
+            return redirect('user_profile')
+    return render(request, 'tracker/add_record.html', {"form": form, "habit": habit})

@@ -29,4 +29,5 @@ urlpatterns = [
     path('', views.guest_home, name="guest_home"),
     path('user/', views.user_profile, name="user_profile"),
     path('habit/add/', views.add_habit, name="add_habit"),
+    path('habit/<int:pk>/add_record', views.add_record, name="add_record")
 ]
