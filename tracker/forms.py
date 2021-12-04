@@ -11,4 +11,8 @@ class HabitForm(forms.ModelForm):
 class DailyRecordForm(forms.ModelForm):
     class Meta:
         model = DailyRecord
-        fields = ['quantity', 'date',]
+        fields = ['quantity',]
+
+
+class RecordDateForm(forms.Form):
+    date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))

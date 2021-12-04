@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'record_data' pk=habit.pk year=record_date.year month=record_date.month day=record_date.day %}">
+    {{ form.as_p }}
+    <button class="button" type="submit">Save</button>
+</form>
+{% endblock content %}

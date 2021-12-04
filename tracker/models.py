@@ -38,7 +38,7 @@ class DailyRecord(models.Model):
             models.UniqueConstraint(fields=['date', 'habit_id'], name="unique_daily_record")
         ]
 
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(null=True)
     date = models.DateField()
     habit_id = models.ForeignKey('Habit', on_delete=models.CASCADE, unique_for_date="date")
     created_at = models.DateTimeField(auto_now_add=True)

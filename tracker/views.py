@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Habit, DailyRecord
-from .forms import DailyRecordForm, HabitForm
+from .forms import DailyRecordForm, HabitForm, RecordDateForm
+from datetime import date
 
 # Create your views here.
 
@@ -21,9 +22,19 @@ def user_profile(request):
 
 @login_required
 def habit_details(request, pk):
+    if request.method == "GET":
+        form = RecordDateForm()
+    else:
+        form = RecordDateForm(data=request.POST)
+        date_str = form['date'].value()
+        date_obj = date.fromisoformat(date_str)
+        year = date_obj.year
+        month = date_obj.month
+        day = date_obj.day
+        return redirect('record_data', pk=pk, year=year, month=month, day=day)
     habit = get_object_or_404(Habit, pk=pk)
     records = DailyRecord.objects.filter(habit_id=habit)
-    return render(request, 'tracker/habit_details.html', {'habit': habit, 'records': records})
+    return render(request, 'tracker/habit_details.html', {"habit": habit, "records": records, "form": form})
 
 
 @login_required
@@ -66,3 +77,18 @@ def edit_habit(request, pk):
             form.save()
             return redirect('habit_details', pk=pk)
     return render(request, 'tracker/edit_habit.html', {"form": form, "habit": habit})
+
+
+@login_required
+def record_data(request, pk, year, month, day):
+    habit = get_object_or_404(Habit, pk=pk)
+    record_date = date(year, month, day)
+    record, created = DailyRecord.objects.get_or_create(habit_id=habit, date=record_date)
+    if request.method == "GET":
+        form = DailyRecordForm(instance=record)
+    else:
+        form = DailyRecordForm(data=request.POST, instance=record)
+        if form.is_valid():
+            form.save()
+            return redirect('habit_details', pk=pk)
+    return render(request, 'tracker/record_data.html', {"form": form, "habit": habit, "record_date": record_date, "record": record, "created":created})
