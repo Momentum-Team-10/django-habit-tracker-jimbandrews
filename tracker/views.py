@@ -91,4 +91,7 @@ def record_data(request, pk, year, month, day):
         if form.is_valid():
             form.save()
             return redirect('habit_details', pk=pk)
+        elif created:
+            record.delete()
+            return redirect('habit_details', pk=pk)
     return render(request, 'tracker/record_data.html', {"form": form, "habit": habit, "record_date": record_date, "record": record, "created":created})
