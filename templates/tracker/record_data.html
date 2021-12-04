@@ -2,7 +2,14 @@
 
 {% block content %}
 <form action="{% url 'record_data' pk=habit.pk year=record_date.year month=record_date.month day=record_date.day %}">
+    {% csrf_token %}
     {{ form.as_p }}
     <button class="button" type="submit">Save</button>
+    {% if created %}
+
+    {% endif %}
+    {% if not created %}
+    <a class="button" href="{% url 'habit_details' pk=habit.pk %}">Cancel</a>
+    {% endif %}
 </form>
 {% endblock content %}
