@@ -33,7 +33,11 @@ def habit_details(request, pk):
         day = date_obj.day
         return redirect('record_data', pk=pk, year=year, month=month, day=day)
     habit = get_object_or_404(Habit, pk=pk)
-    records = DailyRecord.objects.filter(habit_id=habit)
+    records = DailyRecord.objects.filter(
+        habit_id=habit
+    ).exclude(
+        quantity=None
+    )
     return render(request, 'tracker/habit_details.html', {"habit": habit, "records": records, "form": form})
 
 
