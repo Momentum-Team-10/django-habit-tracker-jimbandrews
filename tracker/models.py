@@ -44,7 +44,7 @@ class DailyRecord(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __repr__(self):
-        return f"<DailyRecord habit={self.habit_id}"
+        return f"<DailyRecord habit={self.habit_id}>"
 
     def __str__(self):
         return self.habit_id
