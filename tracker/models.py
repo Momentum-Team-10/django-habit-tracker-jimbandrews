@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator
 from autoslug import AutoSlugField
+from datetime import date, datetime
 
 # Create your models here.
 class User(AbstractUser):
@@ -33,15 +34,15 @@ class Habit(models.Model):
 
 
 class DailyRecord(models.Model):
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(fields=['date', 'habit_id'], name="unique_daily_record")
-        ]
-
     quantity = models.IntegerField(null=True, blank=True)
     date = models.DateField()
     habit_id = models.ForeignKey('Habit', on_delete=models.CASCADE, unique_for_date="date")
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['date', 'habit_id'], name="unique_daily_record")
+        ]
 
     def __repr__(self):
         return f"<DailyRecord habit={self.habit_id}>"
