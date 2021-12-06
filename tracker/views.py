@@ -56,21 +56,6 @@ def add_habit(request):
 
 
 @login_required
-def add_record(request, pk):
-    habit = get_object_or_404(Habit, pk=pk)
-    if request.method == "GET":
-        form = DailyRecordForm()
-    else:
-        form = DailyRecordForm(data=request.POST)
-        if form.is_valid():
-            form = form.save(commit=False)
-            form.habit_id = habit
-            form.save()
-            return redirect('user_profile')
-    return render(request, 'tracker/add_record.html', {"form": form, "habit": habit})
-
-
-@login_required
 def edit_habit(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
     if request.method == "GET":
