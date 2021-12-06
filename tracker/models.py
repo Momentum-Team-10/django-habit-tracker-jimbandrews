@@ -16,14 +16,14 @@ class User(AbstractUser):
 class Habit(models.Model):
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['name', 'user_id'], name="unique_habit")
+            models.UniqueConstraint(fields=['name', 'user'], name="unique_habit")
         ]
 
     name = models.CharField(max_length=75)
     target = models.IntegerField(validators=[MinValueValidator(0)])
     units = models.CharField(max_length=75)
     created_at = models.DateTimeField(auto_now_add=True)
-    user_id = models.ForeignKey('User', on_delete=models.CASCADE)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
     slug = AutoSlugField(populate_from='name', null=True)
 
     def __repr__(self):
