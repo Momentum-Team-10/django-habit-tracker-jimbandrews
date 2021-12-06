@@ -34,7 +34,7 @@ class Habit(models.Model):
 
 
 class DailyRecord(models.Model):
-    quantity = models.IntegerField(null=True, blank=True)
+    quantity = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0)])
     date = models.DateField()
     habit_id = models.ForeignKey('Habit', on_delete=models.CASCADE, unique_for_date="date")
     created_at = models.DateTimeField(auto_now_add=True)
