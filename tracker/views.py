@@ -16,7 +16,7 @@ def guest_home(request):
 @login_required
 def user_profile(request):
     user = request.user
-    habits = Habit.objects.filter(user_id=user.pk)
+    habits = Habit.objects.filter(user=user.pk)
     return render(request, 'tracker/profile.html', {"user": user, "habits": habits})
 
 
@@ -49,7 +49,7 @@ def add_habit(request):
         form = HabitForm(data=request.POST)
         if form.is_valid():
             form = form.save(commit=False)
-            form.user_id = request.user
+            form.user = request.user
             form.save()
             return redirect('habit_details')
     return render(request, 'tracker/add_habit.html', {'form': form})
