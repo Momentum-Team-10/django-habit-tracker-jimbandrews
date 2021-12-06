@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.core.validators import MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from autoslug import AutoSlugField
 from datetime import date, datetime
 
@@ -35,7 +35,7 @@ class Habit(models.Model):
 
 class DailyRecord(models.Model):
     quantity = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0)])
-    date = models.DateField()
+    date = models.DateField(validators=[MaxValueValidator(date.today())])
     habit = models.ForeignKey('Habit', on_delete=models.CASCADE, unique_for_date="date", related_name="habit")
     created_at = models.DateTimeField(auto_now_add=True)
 
