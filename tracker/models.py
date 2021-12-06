@@ -36,16 +36,16 @@ class Habit(models.Model):
 class DailyRecord(models.Model):
     quantity = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0)])
     date = models.DateField()
-    habit_id = models.ForeignKey('Habit', on_delete=models.CASCADE, unique_for_date="date")
+    habit = models.ForeignKey('Habit', on_delete=models.CASCADE, unique_for_date="date", related_name="habit")
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['date', 'habit_id'], name="unique_daily_record")
+            models.UniqueConstraint(fields=['date', 'habit'], name="unique_daily_record")
         ]
 
     def __repr__(self):
-        return f"<DailyRecord habit={self.habit_id}>"
+        return f"<DailyRecord habit={self.habit}>"
 
     def __str__(self):
-        return self.habit_id
+        return self.habit

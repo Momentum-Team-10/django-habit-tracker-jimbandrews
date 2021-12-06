@@ -34,7 +34,7 @@ def habit_details(request, pk):
         return redirect('record_data', pk=pk, year=year, month=month, day=day)
     habit = get_object_or_404(Habit, pk=pk)
     records = DailyRecord.objects.filter(
-        habit_id=habit
+        habit=habit
     ).exclude(
         quantity=None
     )
@@ -72,7 +72,7 @@ def edit_habit(request, pk):
 def record_data(request, pk, year, month, day):
     habit = get_object_or_404(Habit, pk=pk)
     record_date = date(year, month, day)
-    record, created = DailyRecord.objects.get_or_create(habit_id=habit, date=record_date)
+    record, created = DailyRecord.objects.get_or_create(habit=habit, date=record_date)
     if request.method == "GET":
         form = DailyRecordForm(instance=record)
     else:
