@@ -77,10 +77,7 @@ def record_data(request, pk, year, month, day):
         form = DailyRecordForm(instance=record)
     else:
         form = DailyRecordForm(data=request.POST, instance=record)
-        if form['quantity'].value() == '' and created:
-            record.delete()
-            return redirect('habit_details', pk=pk)
-        elif form.is_valid():
+        if form.is_valid():
             form.save()
             return redirect('habit_details', pk=pk)
     return render(request, 'tracker/record_data.html', {"form": form, "habit": habit, "record_date": record_date, "record": record, "created":created})
