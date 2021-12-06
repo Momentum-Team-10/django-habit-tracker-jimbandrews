@@ -6,6 +6,20 @@
 <script src="{% static 'js/record_form.js' %}" defer></script>
 {% endblock javascript %}
 
+{% block navbar %}
+<div class="navbar-start">
+    <a href="{% url 'add_habit' %}" class="navbar-item">Add Habit</a>
+</div>
+
+<div class="navbar-end">
+    <div class="navbar-item">
+        <div class="buttons">
+            <a href="{% url 'auth_logout' %}" class="button">Log out</a>
+        </div>
+    </div>
+</div>
+{% endblock navbar %}
+
 {% block content %}
 <form action="{% url 'record_data' pk=habit.pk year=record_date.year month=record_date.month day=record_date.day %}" method="POST">
     {% csrf_token %}
