@@ -88,12 +88,10 @@ def record_data(request, pk, year, month, day):
     habit = get_object_or_404(Habit, pk=pk)
     record_date = date(year, month, day)
     record, created = DailyRecord.objects.get_or_create(habit_id=habit, date=record_date)
-    breakpoint()
     if request.method == "GET":
         form = DailyRecordForm(instance=record)
     else:
         form = DailyRecordForm(data=request.POST, instance=record)
-        breakpoint()
         if form['quantity'].value() == '' and created:
             record.delete()
             return redirect('habit_details', pk=pk)
