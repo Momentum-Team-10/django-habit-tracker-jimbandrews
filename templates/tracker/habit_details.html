@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block javascript %}
+<script src="{% static 'js/habit_details_indicator.js' %}" defer></script>
+{% endblock javascript %}
+
 {% block title %}{{ habit.name }}{% endblock title %}
 
 {% block navbar %}
 <div class="navbar-start">
     <a href="{% url 'add_habit' %}" class="navbar-item">Add Habit</a>
-    <a class="navbar-item">Record Habit</a>
 </div>
 
 <div class="navbar-end">
@@ -18,10 +23,14 @@
 {% endblock navbar %}
 
 {% block content %}
-<div class="container">
+<div class="container mx-1">
     <div class="content block">
         <h1>{{ habit.name }} Overview</h1>
-        <h3>Target: {{ habit.target }} {{ habit.units }} per day</h3>
+        <h3 id="target" data-target="{{ habit.target }}">Target: {{ habit.target }} {{ habit.units }} per day</h3>
+        <div class="content block">
+            <a class="button" href="{% url 'edit_habit' pk=habit.pk %}">Edit Habit</a>
+            <a class="button" href="{% url 'delete_habit' pk=habit.pk %}">Delete Habit</a>
+        </div>
     </div>
     <div class="content block">
         <form action="{% url 'habit_details' pk=habit.pk %}" method="POST">
@@ -30,17 +39,15 @@
             <button class="button" type="submit">Record Data</button>
         </form>
     </div>
-    <div class="content block">
-        <a class="button" href="{% url 'edit_habit' pk=habit.pk %}">Edit Habit</a>
-    </div>
     <table class="table">
         <tbody>
             {% for record in records %}
-            <tr>
+            <tr id="{{ record.date }}">
                 <th>
                     {{ record.date }}
                 </th>
-                <td>{{ record.quantity }} {{ habit.units }}</td>
+                <td class="quantity">{{ record.quantity }}</td>
+                <td class="icon"></td>
             </tr>
             {% endfor %}
         </tbody>

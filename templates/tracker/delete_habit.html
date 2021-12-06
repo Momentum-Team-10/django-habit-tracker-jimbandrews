@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Delete Confirmation
+{% endblock title %}
+
+{% block navbar %}
+<div class="navbar-start">
+    <a href="{% url 'add_habit' %}" class="navbar-item">Add Habit</a>
+</div>
+
+<div class="navbar-end">
+    <div class="navbar-item">
+        <div class="buttons">
+            <a href="{% url 'auth_logout' %}" class="button">Log out</a>
+        </div>
+    </div>
+</div>
+{% endblock navbar %}
+
+{% block content %}
+<div>
+    <h1>Confirmation</h1>
+    <p>Are you sure you would like to delete {{ habit.name }}?</p>
+    <form action="{% url 'delete_habit' pk=habit.pk %}" method="POST">
+        {% csrf_token %}
+        <button class="button" type="submit">Delete</button>
+    </form>
+    <a class="button" href="{% url 'habit_details' pk=habit.pk %}">Cancel</a>
+</div>
+{% endblock content %}

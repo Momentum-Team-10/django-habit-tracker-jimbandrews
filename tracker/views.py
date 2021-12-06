@@ -101,3 +101,13 @@ def record_data(request, pk, year, month, day):
             form.save()
             return redirect('habit_details', pk=pk)
     return render(request, 'tracker/record_data.html', {"form": form, "habit": habit, "record_date": record_date, "record": record, "created":created})
+
+
+@login_required
+def delete_habit(request, pk):
+    habit = get_object_or_404(Habit, pk=pk)
+    if request.method == "POST":
+        habit.delete()
+        return redirect('user_profile')
+    else:
+        return render(request, "tracker/delete_habit.html", {"habit": habit})
