@@ -51,7 +51,7 @@ def add_habit(request):
             form = form.save(commit=False)
             form.user = request.user
             form.save()
-            return redirect('habit_details')
+            return redirect('user_profile')
     return render(request, 'tracker/add_habit.html', {'form': form})
 
 
