@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from tracker import views
+from tracker import views as tracker_views
+from api import views as api_views
 import debug_toolbar
 
 urlpatterns = [
@@ -26,12 +27,13 @@ urlpatterns = [
     # debug-toolbar pages
     path('__debug__/', include(debug_toolbar.urls)),
     # my app pages
-    path('', views.guest_home, name="guest_home"),
-    path('user/', views.user_profile, name="user_profile"),
-    path('habit/add/', views.add_habit, name="add_habit"),
-    path('habit/<int:pk>/', views.habit_details, name="habit_details"),
-    path('habit/<int:pk>/edit/', views.edit_habit, name="edit_habit"),
-    path('habit/<int:pk>/<int:year>/<int:month>/<int:day>/', views.record_data, name="record_data"),
-    path('habit/<int:pk>/delete', views.delete_habit, name="delete_habit"),
+    path('', tracker_views.guest_home, name="guest_home"),
+    path('user/', tracker_views.user_profile, name="user_profile"),
+    path('habit/add/', tracker_views.add_habit, name="add_habit"),
+    path('habit/<int:pk>/', tracker_views.habit_details, name="habit_details"),
+    path('habit/<int:pk>/edit/', tracker_views.edit_habit, name="edit_habit"),
+    path('habit/<int:pk>/<int:year>/<int:month>/<int:day>/', tracker_views.record_data, name="record_data"),
+    path('habit/<int:pk>/delete', tracker_views.delete_habit, name="delete_habit"),
     path('api-auth/', include('rest_framework.urls')),
+    path('api/habits', api_views.HabitListView.as_view(), name="api_habit_list"),
 ]
