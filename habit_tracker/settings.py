@@ -48,9 +48,11 @@ INSTALLED_APPS = [
 
     # My apps
     'tracker',
+    'api',
 
     # Third-party apps
     'debug_toolbar',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

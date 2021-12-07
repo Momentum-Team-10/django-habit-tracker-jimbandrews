@@ -33,4 +33,5 @@ urlpatterns = [
     path('habit/<int:pk>/edit/', views.edit_habit, name="edit_habit"),
     path('habit/<int:pk>/<int:year>/<int:month>/<int:day>/', views.record_data, name="record_data"),
     path('habit/<int:pk>/delete', views.delete_habit, name="delete_habit"),
+    path('api-auth/', include('rest_framework.urls')),
 ]

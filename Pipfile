@@ -15,6 +15,8 @@ bpython = "*"
 django-registration-redux = "*"
 django-debug-toolbar = "*"
 django-autoslug = "*"
+djangorestframework = "*"
+markdown = "*"
 
 [dev-packages]
 
