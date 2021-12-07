@@ -3,7 +3,7 @@ from tracker.models import Habit
 
 class HabitSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Habit
+        model = Habit
         fields = (
             'pk',
             'name',
