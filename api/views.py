@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from tracker.models import Habit
-from .serializers import HabitSerializer
+from tracker.models import Habit, DailyRecord
+from .serializers import HabitSerializer, RecordSerializer
 
 
 class HabitListView(ListCreateAPIView):
@@ -22,3 +22,8 @@ class HabitDetailView(RetrieveUpdateDestroyAPIView):
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
+
+
+class RecordListView(ListAPIView):
+    queryset = DailyRecord.objects.all()
+    serializer_class = RecordSerializer

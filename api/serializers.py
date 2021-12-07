@@ -1,14 +1,26 @@
 from rest_framework import serializers
-from tracker.models import Habit
+from tracker.models import Habit, DailyRecord
 
-class HabitSerializer(serializers.ModelSerializer):
+
+class RecordSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Habit
+        model = DailyRecord
         fields = (
             'pk',
-            'name',
-            'target',
-            'units',
-            'created_at',
-            'user',
+            'quantity',
+            'date',
+            'habit',
         )
+
+
+class HabitSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Habit
+            fields = (
+                'pk',
+                'name',
+                'target',
+                'units',
+                'created_at',
+                'user',
+            )
