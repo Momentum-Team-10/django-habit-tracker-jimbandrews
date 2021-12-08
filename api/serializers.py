@@ -9,18 +9,19 @@ class RecordSerializer(serializers.ModelSerializer):
             'pk',
             'quantity',
             'date',
-            'habit',
         )
 
 
 class HabitSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = Habit
-            fields = (
-                'pk',
-                'name',
-                'target',
-                'units',
-                'created_at',
-                'user',
-            )
+    records = RecordSerializer(many=True, read_only=True)
+    class Meta:
+        model = Habit
+        fields = (
+            'pk',
+            'name',
+            'target',
+            'units',
+            'created_at',
+            'user',
+            'records'
+        )
