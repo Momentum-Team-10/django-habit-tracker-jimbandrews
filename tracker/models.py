@@ -49,4 +49,4 @@ class DailyRecord(models.Model):
         return f"<DailyRecord habit={self.habit}>"
 
     def __str__(self):
-        return self.date.isoformat()
+        return self.habit.name + ' : ' + self.date.isoformat()
