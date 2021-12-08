@@ -3,6 +3,18 @@ from tracker.models import Habit, DailyRecord
 
 
 class RecordSerializer(serializers.ModelSerializer):
+    habit = serializers.StringRelatedField()
+    class Meta:
+        model = DailyRecord
+        fields = (
+            'pk',
+            'habit',
+            'quantity',
+            'date',
+        )
+
+
+class RecordForHabitSerializer(serializers.ModelSerializer):
     class Meta:
         model = DailyRecord
         fields = (
