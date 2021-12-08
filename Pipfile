@@ -17,6 +17,7 @@ django-debug-toolbar = "*"
 django-autoslug = "*"
 djangorestframework = "*"
 markdown = "*"
+pytz = "*"
 
 [dev-packages]
 
