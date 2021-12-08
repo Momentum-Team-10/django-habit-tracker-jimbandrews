@@ -14,6 +14,7 @@ class RecordSerializer(serializers.ModelSerializer):
 
 class HabitSerializer(serializers.ModelSerializer):
     records = RecordSerializer(many=True, read_only=True)
+    user = serializers.StringRelatedField()
     class Meta:
         model = Habit
         fields = (

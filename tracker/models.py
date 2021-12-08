@@ -23,7 +23,7 @@ class Habit(models.Model):
     target = models.IntegerField(validators=[MinValueValidator(0)])
     units = models.CharField(max_length=75)
     created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    user = models.ForeignKey('User', on_delete=models.CASCADE, related_name='habits')
     slug = AutoSlugField(populate_from='name', null=True)
 
     def __repr__(self):
