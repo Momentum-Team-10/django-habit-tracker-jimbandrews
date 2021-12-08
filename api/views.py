@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from tracker.models import Habit, DailyRecord
 from .serializers import HabitSerializer, RecordSerializer
 
-
+# Generic Views
 class HabitListView(ListCreateAPIView):
     """
     List all habits
@@ -19,7 +19,7 @@ class HabitListView(ListCreateAPIView):
 
 class HabitDetailView(RetrieveUpdateDestroyAPIView):
     '''
-    providing a set for DRF to search within and display a single habit
+    See a single habit
     '''
 
     queryset = Habit.objects.all()
@@ -38,6 +38,7 @@ class RecordListView(RetrieveUpdateDestroyAPIView):
         return Response(serializer.data)
 
 
+# ViewSets
 class HabitViewSet(ModelViewSet):
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer

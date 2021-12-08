@@ -34,11 +34,6 @@ urlpatterns = [
     path('habit/<int:pk>/edit/', tracker_views.edit_habit, name="edit_habit"),
     path('habit/<int:pk>/<int:year>/<int:month>/<int:day>/', tracker_views.record_data, name="record_data"),
     path('habit/<int:pk>/delete', tracker_views.delete_habit, name="delete_habit"),
-    # api endpoints with Generic Views
-    # path('api-auth/', include('rest_framework.urls')),
-    # path('api/habits/', api_views.HabitListView.as_view(), name="api_habit_list"),
-    # path('api/habits/<int:pk>/', api_views.HabitDetailView.as_view(), name="api_habit_detail"),
-    # path('api/habits/<int:pk>/records/', api_views.RecordListView.as_view(), name = "api_record_list"),
-    # api endpoints with ViewSets
+    # api endpoints
     path('api/', include('api.urls')),
 ]
