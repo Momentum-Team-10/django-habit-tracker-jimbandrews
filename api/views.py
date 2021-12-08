@@ -24,6 +24,13 @@ class HabitDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = HabitSerializer
 
 
-class RecordListView(ListAPIView):
+class RecordListView(RetrieveUpdateDestroyAPIView):
     queryset = DailyRecord.objects.all()
     serializer_class = RecordSerializer
+    lookup_field = 'habit'
+    lookup_url_kwarg = 'pk'
+
+    def retrieve(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = RecordSerializer(queryset, many=True)
+        return Response(serializer.data)
