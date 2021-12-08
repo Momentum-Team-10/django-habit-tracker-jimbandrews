@@ -43,10 +43,10 @@ class DailyRecord(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['date', 'habit'], name="unique_daily_record")
         ]
-        ordering = ['date']
+        ordering = ['habit', 'date']
 
     def __repr__(self):
         return f"<DailyRecord habit={self.habit}>"
 
     def __str__(self):
-        return self.habit
+        return self.date.isoformat()
