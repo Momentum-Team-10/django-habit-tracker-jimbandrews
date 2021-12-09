@@ -1,5 +1,5 @@
 from rest_framework.decorators import permission_classes
-from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView, get_object_or_404
+from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView, get_object_or_404
 from rest_framework.serializers import ModelSerializer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny
@@ -17,6 +17,9 @@ class HabitListView(ListCreateAPIView):
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
 
 class HabitDetailView(RetrieveUpdateDestroyAPIView):
     '''
@@ -33,9 +36,11 @@ class RecordListView(ListCreateAPIView):
     def get_queryset(self):
         queryset = DailyRecord.objects.filter(habit_id=self.kwargs["pk"])
         return queryset
+    def perform_create(self, serializer):
+        serializer.save(habit_id=self.kwargs["pk"])
 
 
-class RecordDetailView(RetrieveUpdateDestroyAPIView):
+class RecordDetailView(RetrieveAPIView):
     serializer_class = RecordSerializer
 
     def get_queryset(self):
