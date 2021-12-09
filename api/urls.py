@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import HabitViewSet, RecordViewSet, HabitListView, HabitDetailView, RecordListView
+from .views import HabitViewSet, RecordViewSet, HabitListView, HabitDetailView, RecordListView, RecordDetailView
 
 '''
 There are 2 versions of creating the api endpoints for this project.
@@ -22,4 +22,5 @@ urlpatterns = [
     path('habits/', HabitListView.as_view(), name="api_habit_list"),
     path('habits/<int:pk>/', HabitDetailView.as_view(), name="api_habit_detail"),
     path('habits/<int:pk>/records/', RecordListView.as_view(), name = "api_record_list"),
+    path('habits/<int:pk>/<int:year>/<int:month>/<int:day>/', RecordDetailView.as_view(), name="api_record_detail")
 ]
