@@ -31,6 +31,9 @@ class HabitDetailView(RetrieveUpdateDestroyAPIView):
 
 
 class RecordListView(ListCreateAPIView):
+    '''
+    List all records for a habit
+    '''
     serializer_class = RecordSerializer
 
     def get_queryset(self):
@@ -41,6 +44,9 @@ class RecordListView(ListCreateAPIView):
 
 
 class RecordDetailView(RetrieveAPIView):
+    '''
+    See a single record
+    '''
     serializer_class = RecordSerializer
 
     def get_queryset(self):
