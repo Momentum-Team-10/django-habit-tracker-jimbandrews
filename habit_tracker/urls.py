@@ -35,5 +35,6 @@ urlpatterns = [
     path('habit/<int:pk>/<int:year>/<int:month>/<int:day>/', tracker_views.record_data, name="record_data"),
     path('habit/<int:pk>/delete', tracker_views.delete_habit, name="delete_habit"),
     # api endpoints
+    path('api-auth/', include('rest_framework.urls')),
     path('api/', include('api.urls')),
 ]
