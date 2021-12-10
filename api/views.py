@@ -2,11 +2,12 @@ from rest_framework.decorators import permission_classes
 from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView, get_object_or_404
 from rest_framework.serializers import ModelSerializer
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from datetime import date
 from tracker.models import Habit, DailyRecord
 from .serializers import HabitSerializer, RecordSerializer
+from .permissions import IsHabitCreator, IsRecordCreator
 
 # Generic Views
 class HabitListView(ListCreateAPIView):
@@ -14,8 +15,12 @@ class HabitListView(ListCreateAPIView):
     List all habits
     """
 
-    queryset = Habit.objects.all()
     serializer_class = HabitSerializer
+    permission_classes = [IsAuthenticated, IsHabitCreator]
+
+    def get_queryset(self):
+        queryset = Habit.objects.filter(user=self.request.user)
+        return queryset
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -26,8 +31,12 @@ class HabitDetailView(RetrieveUpdateDestroyAPIView):
     See a single habit
     '''
 
-    queryset = Habit.objects.all()
     serializer_class = HabitSerializer
+    permission_classes = [IsAuthenticated, IsHabitCreator]
+
+    def get_queryset(self):
+        queryset = Habit.objects.filter(user=self.request.user)
+        return queryset
 
 
 class RecordListView(ListCreateAPIView):
@@ -35,6 +44,7 @@ class RecordListView(ListCreateAPIView):
     List all records for a habit
     '''
     serializer_class = RecordSerializer
+    permission_classes = [IsAuthenticated, IsRecordCreator]
 
     def get_queryset(self):
         queryset = DailyRecord.objects.filter(habit_id=self.kwargs["pk"])
@@ -48,6 +58,7 @@ class RecordDetailView(RetrieveAPIView):
     See a single record
     '''
     serializer_class = RecordSerializer
+    permission_classes = [IsAuthenticated, IsRecordCreator]
 
     def get_queryset(self):
         queryset = DailyRecord.objects.filter(habit_id=self.kwargs["pk"])
