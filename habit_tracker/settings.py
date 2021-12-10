@@ -152,3 +152,9 @@ REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = "/user/"
 
 INTERNAL_IPS = ["127.0.0.1",]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
