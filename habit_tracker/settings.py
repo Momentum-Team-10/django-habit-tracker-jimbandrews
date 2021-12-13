@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     # Third-party apps
     'debug_toolbar',
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -152,3 +154,9 @@ REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = "/user/"
 
 INTERNAL_IPS = ["127.0.0.1",]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}

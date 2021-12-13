@@ -37,4 +37,7 @@ urlpatterns = [
     # api endpoints
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include('api.urls')),
+    # djoser
+    path('^auth/', include('djoser.urls')),
+    path('^auth/', include('djoser.urls.authtoken')),
 ]
