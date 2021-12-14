@@ -6,6 +6,9 @@ from datetime import date, datetime
 
 # Create your models here.
 class User(AbstractUser):
+    bio = models.TextField(blank=True, null=True)
+    image_url = models.CharField(max_length=75, null=True, blank=True)
+
     def __repr__(self):
         return f"<User username={self.username}>"
 

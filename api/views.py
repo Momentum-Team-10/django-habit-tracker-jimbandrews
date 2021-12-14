@@ -5,8 +5,8 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from datetime import date
-from tracker.models import Habit, DailyRecord
-from .serializers import HabitSerializer, RecordSerializer
+from tracker.models import Habit, DailyRecord, User
+from .serializers import HabitSerializer, RecordSerializer, UserSerializer
 from .permissions import IsHabitCreator, IsRecordCreator
 
 # Generic Views
@@ -83,3 +83,9 @@ class RecordViewSet(ModelViewSet):
     queryset = DailyRecord.objects.all()
     serializer_class = RecordSerializer
     permission_classes = [AllowAny]
+
+
+class UserDetailView(RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = []
